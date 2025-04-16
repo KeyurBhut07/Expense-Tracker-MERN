@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react';
+import {FaRegEye, FaRegEyeSlash} from "react-icons/fa6"
 
 interface InputProps {
   value: string;
@@ -8,10 +9,51 @@ interface InputProps {
   type?: string;
 }
 
+const Input = ({
+  value,
+  onChange,
+  label,
+  placeholder,
+  type = 'text',
+}: InputProps) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+  return (
+    <div>
+      <label className="text-[13px] text-slate-800">{label}</label>
 
-
-const Input: React.FC<InputProps> = ({ value, onChange, label, placeholder, type = 'text' }) => {
-  return <div>Input</div>;
+      <div className='input-box'>
+        <input
+          type={
+            type === 'password' ? (showPassword ? 'text' : 'password') : type
+          }
+          placeholder={placeholder}
+          className="w-full bg-transparent outline-none"
+          value={value}
+          onChange={(e: any) => onChange(e)}
+        />
+        {type === 'password' && (
+          <>
+          {showPassword ? (
+            <FaRegEye
+            size={22}
+            className="text-primary cursor-pointer"
+            onClick={() => toggleShowPassword()}
+            />
+          ) : (
+            <FaRegEyeSlash
+            size={22}
+            className="text-slate-400 cursor-pointer"
+            onClick={() => toggleShowPassword()}
+            />
+          )}
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
 
-export default Input
+export default Input;
