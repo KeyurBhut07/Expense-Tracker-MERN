@@ -53,7 +53,7 @@ const login = async (req, res) => {
 
 const getUserInfo = async (req, res) => {
   try {
-    const user = await Users.findById(req.user.id).select('-password');
+    const user = await Users.findById(req.user._id).select('-password');
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
