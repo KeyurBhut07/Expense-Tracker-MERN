@@ -1,8 +1,11 @@
-import { useContext } from 'react';
-import { UserContext } from '../../context/userContext';
+import DashboardLayout from '../../components/layouts/DashboardLayout';
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <DashboardLayout activeMenu="Dashboard">
+      <div className="my-s mx-auto">Home</div>
+    </DashboardLayout>
+  );
 };
 
 export default Home;
