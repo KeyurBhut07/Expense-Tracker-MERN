@@ -51,8 +51,8 @@ const CustomeBarChart = ({ data }: any) => {
             dataKey="amount"
             fill="#FF8042"
             radius={[10, 10, 0, 0]}
-            activeDot={{ r: 8, fill: 'yellow' }}
-            activeStyle={{ fill: 'green' }}
+            // activeDot={{ r: 8, fill: 'yellow' }}
+            // activeStyle={{ fill: 'green' }}
           >
             {data?.map((entry: any, index: any) => (
               <Cell key={index} fill={getBarColor(index)} />

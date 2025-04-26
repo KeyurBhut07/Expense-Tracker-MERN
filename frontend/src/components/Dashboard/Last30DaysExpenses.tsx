@@ -33,7 +33,7 @@ const Last30DaysExpenses: React.FC<RecentTransactionsProps> = ({ data }) => {
   return (
     <div className="card col-span-1">
       <div className="flex items-center justify-between">
-        <h5 className="text-lg">Last 30 Days Transactions</h5>
+        <h5 className="text-lg">Last 30 Days Expenses</h5>
       </div>
 
       <CustomeBarChart data={chartData} />
