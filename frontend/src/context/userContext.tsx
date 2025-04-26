@@ -5,6 +5,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  profileImageUrl: string;
   // Add more fields if required
 }
 
