@@ -98,7 +98,27 @@ const Income = () => {
   };
 
   // Handle Dowload income details
-  const handleDownloadIncomeDetails = async () => {};
+  const handleDownloadIncomeDetails = async () => {
+    try {
+      const response = await axiosInstance.post(
+        API_PATH.INCOME.DOWLOAND_INCOME,
+        {
+          responseType: 'blob',
+        }
+      );
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'income_details.xlsx');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode?.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.log('Error Downloading income detail', error);
+      toast.error('Failed to download. Please try after sometime.');
+    }
+  };
 
   useEffect(() => {
     fetchIncomeDetails();

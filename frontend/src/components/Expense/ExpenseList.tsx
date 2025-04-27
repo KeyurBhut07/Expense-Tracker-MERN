@@ -8,7 +8,7 @@ export interface Transaction {
   _id: string;
   userId: string;
   icon: string;
-  source: string;
+  category: string;
   amount: number;
   date: string;
   createdAt: string;
@@ -16,13 +16,13 @@ export interface Transaction {
   __v: number;
 }
 
-interface IncomeListProps {
+interface ExpenseListProps {
   transactions: Transaction[];
   onDelete: (id: string) => void;
   onDowload: () => void;
 }
 
-const IncomeList: React.FC<IncomeListProps> = ({
+const ExpenseList: React.FC<ExpenseListProps> = ({
   transactions,
   onDelete,
   onDowload,
@@ -30,7 +30,7 @@ const IncomeList: React.FC<IncomeListProps> = ({
   return (
     <div className="card">
       <div className="flex items-center justify-between">
-        <h5 className="text-lg">Income Sources</h5>
+        <h5 className="text-lg">All Expenses</h5>
         <button className="card-btn" onClick={onDowload}>
           <LuDownload className="text-base" /> Download
         </button>
@@ -39,11 +39,11 @@ const IncomeList: React.FC<IncomeListProps> = ({
         {transactions.map((income) => (
           <TransactionInfoCard
             key={income._id}
-            title={income.source}
+            title={income.category}
             icon={income.icon}
             date={moment(income.date).format('Do MMM YYYY')}
             amount={income.amount}
-            type="income"
+            type="expense"
             onDelete={() => onDelete(income._id)}
           />
         ))}
@@ -52,4 +52,4 @@ const IncomeList: React.FC<IncomeListProps> = ({
   );
 };
 
-export default IncomeList;
+export default ExpenseList;
