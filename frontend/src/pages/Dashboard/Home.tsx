@@ -12,6 +12,8 @@ import RecentTransactions from '../../components/Dashboard/RecentTransactions';
 import FinanceOverview from '../../components/Dashboard/FinanceOverview';
 import { ExpenseTransactions } from '../../components/Dashboard/ExpenseTransactions';
 import Last30DaysExpenses from '../../components/Dashboard/Last30DaysExpenses';
+import RecentIncomeWithChart from '../../components/Dashboard/RecentIncomeWithChart';
+import RecentIncome from '../../components/Dashboard/RecentIncome';
 
 export interface Transaction {
   _id: string;
@@ -104,20 +106,32 @@ const Home = () => {
             transactions={dashboardData?.recentTransactions}
             onSeeMore={() => navigate('/expense')}
           />
-
           <FinanceOverview
             totalBalance={dashboardData?.totalBalance || 0}
             totalIncome={dashboardData?.totalIncome || 0}
             totalExpense={dashboardData?.totalExpense || 0}
           />
-
           <ExpenseTransactions
             transactions={dashboardData?.last30DaysExpense?.transactions || []}
             onSeeMore={() => navigate('/expense')}
           />
-
           <Last30DaysExpenses
             data={dashboardData?.last30DaysExpense.transactions || []}
+          />
+          <RecentIncomeWithChart
+            data={
+              dashboardData?.last60DaysIncomeTransaction?.transactions?.slice(
+                0,
+                4
+              ) || []
+            }
+            totalIncome={dashboardData?.totalIncome || 0}
+          />
+          <RecentIncome
+            transactions={
+              dashboardData?.last60DaysIncomeTransaction.transactions || []
+            }
+            onSeeMore={() => navigate('/income')}
           />
         </div>
       </div>

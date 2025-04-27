@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { Transaction } from '../components/Dashboard/RecentTransactions';
 
 export const validateEmail = (email: string) => {
@@ -27,4 +28,18 @@ export const prepareExpenseBarChartData = (data: Transaction[] = []) => {
     amount: item?.amount,
   }));
   return chartData;
+};
+
+export const prepareIncomeBarChartData = (data: Transaction[] = []) => {
+  const sortData = [...data].sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
+
+  const chartData = sortData.map((item) => ({
+    month: moment(item.date).format('Do MM'),
+    amount: item.amount,
+    source: item.source,
+  }));
+
+  return chartData
 };
